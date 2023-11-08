@@ -10,10 +10,11 @@ public class Player : PlayerController
     private Battle _battle;
     private LevelData _level;
     private Equipment _equipment;
-    private ItemList[] _itemList;
-
+   
     private float _encountPercent;
     private int _rand;
+
+    public ItemList _ownItemList;
 
     public int _atk;
     public int _def;

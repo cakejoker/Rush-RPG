@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemList", menuName = "Scriptable Object/Item List", order = int.MaxValue)]
 public class ItemList : ScriptableObject 
 {
-    [SerializeField] List<Weapon> _weaponList;
-    //[SerializeField] List<Helmet> _helmetList;
-    //[SerializeField] List<Armor> _armorList;
-    //[SerializeField] List<Leggings> _leggingsList;
-    //[SerializeField] List<Boots> _bootsList;
-    //[SerializeField] List<Accessory> _accessoryList;
+    public List<Weapon> _weaponList;
+    public List<Helmet> _helmetList;
+    public List<Armor> _armorList;
+    public List<Glove> _gloveList;
+    public List<Boots> _bootsList;
+    public List<Accessory> _accessoryList;
 }

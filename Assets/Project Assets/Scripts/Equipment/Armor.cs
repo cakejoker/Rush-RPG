@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Armor : MonoBehaviour
+[CreateAssetMenu(fileName = "Armor", menuName = "Scriptable Object/Armor Data", order = int.MaxValue)]
+public class Armor : ItemData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] int _def;
+    public int DEF { get { return _def; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] float _defMultiply;
+    public float DEFMultiply { get { return _defMultiply; } }
 }

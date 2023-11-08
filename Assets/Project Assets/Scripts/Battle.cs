@@ -1,45 +1,106 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Battle : MonoBehaviour
 {
     [SerializeField] GameObject _battlePanel;
+    [SerializeField] GameObject _weaponListPanel;
+    [SerializeField] Image _targetMonster;
+    [SerializeField] GameObject _battleInfoPanel;
+    [SerializeField] Image _dropItemImage;
+    [SerializeField] Text _dropItemText;
+    [SerializeField] Text _gainEXP;
+    [SerializeField] Text _gainGold;
+    [SerializeField] UIManager UI;
 
-    private GameObject _targetMonster;
-    private MonsterData _monsterData;
-    private Player _playerData;
+    Player _playerData;
+    GameObject itemSlot;
 
-    public void BattleStart(GameObject targetMonster)
+    private void Start()
     {
-        _battlePanel.SetActive(true);
-        _targetMonster = Instantiate(targetMonster);
-        _targetMonster.transform.position = _battlePanel.transform.GetChild(0).transform.position;
-        _targetMonster.transform.parent = _battlePanel.transform;
-        _monsterData = _targetMonster.GetComponent<MonsterData>();
-        _playerData = this.GetComponent<Player>();
-        _playerData.IsBattle = true;
-        StartCoroutine(BattlePhase(_monsterData.SetDropItem()));
-        Debug.Log("BattleStart!");
+        _battlePanel.SetActive(false);
+        _battleInfoPanel.SetActive(false);
     }
 
-    private IEnumerator BattlePhase(ItemData itemData)
+    public void BattleStart(MonsterData monsterData)
+    {
+        _battlePanel.SetActive(true);
+        _battleInfoPanel.SetActive(false);
+        GameManager.Instance.IsBattleEnd = false;
+        _targetMonster.gameObject.SetActive(true);
+        _targetMonster.sprite = monsterData.MonsterImage;
+        monsterData.CurrentHP = monsterData.MaxHP;
+        _playerData = this.GetComponent<Player>();
+        _playerData.IsBattle = true;
+        Debug.Log("BattleStart!");
+        StartCoroutine(BattlePhase(monsterData.SetDropItem(),monsterData));
+    }
+
+    private IEnumerator BattlePhase(ItemData itemData, MonsterData monsterData)
     {
         while(true)
         {
-            _monsterData._currentHp -= _playerData._atk;
-            Debug.Log($"Monster : {_monsterData._currentHp}");
-            if (_monsterData._currentHp <= 0)
+            monsterData.CurrentHP -= _playerData._atk;
+            Debug.Log($"Monster : {monsterData.CurrentHP}");
+            if (monsterData.CurrentHP <= 0)
             {
+                GameManager.Instance.IsBattleEnd = true;
                 Debug.Log($"Drop!\n " +
                     $"{itemData.ItemName}\n" +
                     $"{itemData.ItemID}\n" +
                     $"{itemData.ItemType}");
+                switch (itemData.ItemType)
+                {
+                    case ItemData.ItemTypes.Weapon:
+                        _playerData._ownItemList._weaponList[itemData.ItemID].HasItem = true;
+                        itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
+                        Weapon weapon = itemData as Weapon;
+                        UI.GetItem(weapon);
+                        break;
+                    case ItemData.ItemTypes.Helmet:
+                        _playerData._ownItemList._helmetList[itemData.ItemID].HasItem = true;
+                        itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
+                        Helmet helmet = itemData as Helmet;
+                        UI.GetItem(helmet);
+                        break;
+                    case ItemData.ItemTypes.Armor:
+                        _playerData._ownItemList._armorList[itemData.ItemID].HasItem = true;
+                        itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
+                        Armor armor = itemData as Armor;
+                        UI.GetItem(armor);
+                        break;
+                    case ItemData.ItemTypes.Glove:
+                        _playerData._ownItemList._gloveList[itemData.ItemID].HasItem = true;
+                        itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
+                        Glove glove = itemData as Glove;
+                        UI.GetItem(glove);
+                        break;
+                    case ItemData.ItemTypes.Boots:
+                        _playerData._ownItemList._bootsList[itemData.ItemID].HasItem = true;
+                        itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
+                        Boots boots = itemData as Boots;
+                        UI.GetItem(boots);
+                        break;
+                    case ItemData.ItemTypes.Accessory:
+                        _playerData._ownItemList._accessoryList[itemData.ItemID].HasItem = true;
+                        itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
+                        Accessory accessory = itemData as Accessory;
+                        UI.GetItem(accessory);
+                        break;
+                }
+                _targetMonster.gameObject.SetActive(false);
+                _battleInfoPanel.SetActive(true);
+                _gainEXP.text = $"EXP : {monsterData.EXP}";
+                _gainGold.text = $"Gold : {monsterData.Gold}";
+                _dropItemImage.sprite = itemData.ItemImage;
+                _dropItemText.text = itemData.ItemName;
                 break;
             }               
             yield return new WaitForSeconds(0.5f);
 
-            _playerData._currentHp -= (_monsterData._atk - _playerData._def < 0) ? 0 : (_monsterData._atk - _playerData._def);
+            _playerData._currentHp -= (monsterData.ATK - _playerData._def < 0) ? 0 : (monsterData.ATK - _playerData._def);
             Debug.Log($"Player : {_playerData._currentHp}");
             if (_playerData._currentHp <= 0)
             {

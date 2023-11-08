@@ -5,18 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon", menuName = "Scriptable Object/Weapon Data", order = int.MaxValue)]
 public class Weapon : ItemData
 {
-    [SerializeField] float _multiply;
-    public float Multiply
-    {
-        get { return _multiply; }
-        set { _multiply = value; }
-    }
+    [SerializeField] float _atkMultiply;
+    public float ATKMultiply
+    { get { return _atkMultiply; } }
 
     [SerializeField] int _attack;
     public int Attack
-    {
-        get { return _attack; }
-        set { _attack = value; }
-    }
-    
+    { get { return _attack; } }
 }

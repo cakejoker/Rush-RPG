@@ -2,19 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterData : MonoBehaviour
+[CreateAssetMenu(fileName = "Monster", menuName = "Scriptable Object/Monster Data", order = int.MaxValue)]
+public class MonsterData : ScriptableObject
 {
-    public int _maxHp;
-    public int _atk;
-    public int _exp;
-    public int _gold;
-    public ItemData[] _dropList;
+    [SerializeField] Sprite _monsterImage;
+    public Sprite MonsterImage { get { return _monsterImage; } }
 
-    public int _currentHp;
+    [SerializeField] int _maxHP;
+    public int MaxHP { get { return _maxHP; } }
+
+    [SerializeField] int _atk;
+    public int ATK { get { return _atk; } }
+
+    [SerializeField] int _exp;
+    public int EXP { get { return _exp; } }
+
+    [SerializeField] int _gold;
+    public int Gold { get { return _gold; } }
+
+    [SerializeField] ItemData[] _dropList;
+    public ItemData[] DropList { get { return _dropList; } }
+
+    [SerializeField] int _currentHP;
+    public int CurrentHP 
+    { 
+        get { return _currentHP; } 
+        set { _currentHP = value; }
+    }
 
     public ItemData SetDropItem()
     {
-        int rand = Random.Range(0, _dropList.Length);
+        int rand;
+        bool isNewItem = false;
+        rand = Random.Range(0, _dropList.Length);
+        while (!isNewItem)
+        { 
+            if (!_dropList[rand].HasItem)
+                isNewItem = true;
+            else
+                rand = Random.Range(0, _dropList.Length);
+        }
         return _dropList[rand];
     }
 

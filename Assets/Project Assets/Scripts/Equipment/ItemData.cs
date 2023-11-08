@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
         Weapon,
         Helmet,
         Armor,
-        Leggings,
+        Glove,
         Boots,
         Accessory
     }
@@ -26,4 +26,11 @@ public class ItemData : ScriptableObject
 
     [SerializeField] ItemTypes _itemType;
     public ItemTypes ItemType { get { return _itemType; } }
+
+    [SerializeField] bool _hasItem;
+    public bool HasItem 
+    { 
+        get { return _hasItem; } 
+        set { _hasItem = value; }
+    }
 }

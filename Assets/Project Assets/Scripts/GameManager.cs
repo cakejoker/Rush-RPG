@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region Singleton
+    private static GameManager _instance;
 
-    // Update is called once per frame
-    void Update()
+    public static GameManager Instance
     {
-        
+        get
+        {
+            if(_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+            }
+            return _instance;
+        }
+        set
+        {
+            _instance = value;
+        }
     }
+    #endregion
+
+    public bool IsBattleEnd;
 }

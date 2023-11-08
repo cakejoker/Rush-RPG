@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-    public GameObject[] SpawnList;
+    public MonsterData[] SpawnList;
     public int Level;
     
-    public GameObject SetSpawnMonster()
+    public MonsterData SetSpawnMonster()
     {
         int rand = Random.Range(0, SpawnList.Length);
         return SpawnList[rand];
