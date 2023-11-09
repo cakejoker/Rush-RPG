@@ -32,6 +32,7 @@ public class Battle : MonoBehaviour
         _targetMonster.gameObject.SetActive(true);
         _targetMonster.sprite = monsterData.MonsterImage;
         monsterData.CurrentHP = monsterData.MaxHP;
+        _playerData.CurrentHP = _playerData.MaxHP;
         _playerData = this.GetComponent<Player>();
         _playerData.IsBattle = true;
         Debug.Log("BattleStart!");
@@ -42,15 +43,11 @@ public class Battle : MonoBehaviour
     {
         while(true)
         {
-            monsterData.CurrentHP -= _playerData._atk;
+            monsterData.CurrentHP -= _playerData.ATK;
             Debug.Log($"Monster : {monsterData.CurrentHP}");
             if (monsterData.CurrentHP <= 0)
             {
                 GameManager.Instance.IsBattleEnd = true;
-                Debug.Log($"Drop!\n " +
-                    $"{itemData.ItemName}\n" +
-                    $"{itemData.ItemID}\n" +
-                    $"{itemData.ItemType}");
                 switch (itemData.ItemType)
                 {
                     case ItemData.ItemTypes.Weapon:
@@ -100,9 +97,9 @@ public class Battle : MonoBehaviour
             }               
             yield return new WaitForSeconds(0.5f);
 
-            _playerData._currentHp -= (monsterData.ATK - _playerData._def < 0) ? 0 : (monsterData.ATK - _playerData._def);
-            Debug.Log($"Player : {_playerData._currentHp}");
-            if (_playerData._currentHp <= 0)
+            _playerData.CurrentHP -= (monsterData.ATK - _playerData.DEF < 0) ? 0 : (monsterData.ATK - _playerData.DEF);
+            Debug.Log($"Player : {_playerData.CurrentHP}");
+            if (_playerData.CurrentHP <= 0)
             {
                 break;
             }

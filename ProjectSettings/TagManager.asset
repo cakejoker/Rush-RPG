@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Map
   - Portal
+  - Weapon
+  - Helmet
+  - Armor
+  - Glove
+  - Boots
+  - Accessory
   layers:
   - Default
   - TransparentFX

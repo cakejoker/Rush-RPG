@@ -10,7 +10,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] ItemList _itemList;
 
     [Space]
-    [Header("UI")]
+    [Header("PlayerData")]
+    [SerializeField] Player _player;
+
+    [Space]
+    [Header("Panel")]
     public GameObject MenuUI;
     public GameObject ItemMenuUI;
     public GameObject StatusMenuUI;
@@ -25,8 +29,21 @@ public class UIManager : MonoBehaviour
     public GameObject BootsContent;
     public GameObject AccessoryContent;
 
+    [Space]
+    [Header("Status UI")]
+    public Text HPText;
+    public Text ATKText;
+    public Text DEFText;
+    public Text LUCText;
+    public Text SPText;
+
+    [HideInInspector]
+    public bool IsItemEquip;
+
+
     private void Start()
     {
+        IsItemEquip = false;
         for(int i = 0; i < _itemList._weaponList.Count;i++ )
         {
             GameObject temp = Instantiate(ItemSlot);
@@ -63,8 +80,6 @@ public class UIManager : MonoBehaviour
             temp.name = "Accessory ItemSlot";
             temp.transform.SetParent(AccessoryContent.transform);
         }
-
-        //statuspanel status init
     }
 
     public void OpenMenu()
@@ -85,10 +100,16 @@ public class UIManager : MonoBehaviour
     public void CloseItemMenu()
     {
         ItemMenuUI.SetActive(false);
+        IsItemEquip = false;
     }
 
     public void OpenStatusMenu()
     {
+        HPText.text = _player.HP.ToString();
+        ATKText.text = _player.ATK.ToString();
+        DEFText.text = _player.DEF.ToString();
+        LUCText.text = _player.LUC.ToString();
+        SPText.text = _player.SP.ToString();
         StatusMenuUI.SetActive(true);
     }
 
@@ -154,4 +175,14 @@ public class UIManager : MonoBehaviour
         paranet.GetChild(2).GetComponent<Text>().text = accessory.ItemEffect;    
     }
 
+    public void StatusChange()
+    {
+
+    }
+
+    public void ItemEquip()
+    {
+        IsItemEquip = true;
+        OpenItemMenu();
+    }
 }

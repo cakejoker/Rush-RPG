@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Property")]
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] bool _isJumped;
+
     bool _isBattle;
     Rigidbody2D _playerRigidbody;
     Vector2 _direction;

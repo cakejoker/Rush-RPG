@@ -12,14 +12,62 @@ public class Player : PlayerController
     private Equipment _equipment;
    
     private float _encountPercent;
-    private int _rand;
+    private int _rand;   
 
+    #region Status
+    [Header("Status")]
+    [SerializeField] private int _atk;
+    public int ATK
+    {
+        get { return _atk; }
+        set { _atk = value; }
+    }
+
+    [SerializeField] private int _def;
+    public int DEF
+    {
+        get { return _def; }
+        set { _def = value; }
+    }
+
+    [SerializeField] private int _HP;
+    public int HP
+    {
+        get { return _HP; }
+        set { _HP = value; }
+    }
+
+    [SerializeField] private int _luc;
+    public int LUC
+    {
+        get { return _luc; }
+        set { _luc = value; }
+    }
+
+    [SerializeField] private int _SP;
+    public int SP
+    {
+        get { return _SP; }
+        set { _SP = value; }
+    }
+    #endregion
+
+    [Space]
     public ItemList _ownItemList;
 
-    public int _atk;
-    public int _def;
-    public int _maxHp;
-    public int _currentHp;   
+    private int _maxHp;
+    public int MaxHP
+    {
+        get { return _maxHp; }
+        set { _maxHp = value; }
+    }
+
+    private int _currentHp;
+    public int CurrentHP
+    {
+        get { return _currentHp; }
+        set { _currentHp = value; }
+    }
 
     public float EncountPercent
     {
@@ -47,6 +95,8 @@ public class Player : PlayerController
         this.OnEncountHandler += new EventHandler(OnEncount);
         _level = null;
         EncountPercent = 0;
+        _maxHp = _HP * 10;
+        _SP = 0;
     }
 
     private void Update()
@@ -76,5 +126,8 @@ public class Player : PlayerController
         _rand = UnityEngine.Random.Range(0, 100);
     }
 
+    public void EquipItem()
+    {
 
+    }
 }
