@@ -9,6 +9,6 @@ public class ItemEquip : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _UIManager.ItemEquip();
+        _UIManager.ItemEquip(eventData.pointerPressRaycast.gameObject.tag);
     }
 }

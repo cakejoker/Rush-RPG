@@ -9,10 +9,11 @@ public class Player : PlayerController
 
     private Battle _battle;
     private LevelData _level;
-    private Equipment _equipment;
    
     private float _encountPercent;
-    private int _rand;   
+    private int _rand;
+
+    public Equipment Equipments;
 
     #region Status
     [Header("Status")]
@@ -126,8 +127,5 @@ public class Player : PlayerController
         _rand = UnityEngine.Random.Range(0, 100);
     }
 
-    public void EquipItem()
-    {
-
-    }
+    
 }

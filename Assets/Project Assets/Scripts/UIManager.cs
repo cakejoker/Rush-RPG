@@ -6,10 +6,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Space]
-    [Header("ItemList")]
-    [SerializeField] ItemList _itemList;
-
-    [Space]
     [Header("PlayerData")]
     [SerializeField] Player _player;
 
@@ -37,44 +33,57 @@ public class UIManager : MonoBehaviour
     public Text LUCText;
     public Text SPText;
 
-    [HideInInspector]
-    public bool IsItemEquip;
+    [Space]
+    [Header("Item Equip UI")]
+    public Image WeaponImage;
+    public Image HelmetImage;
+    public Image ArmorImage;
+    public Image GloveImage;
+    public Image BootsImage;
+    public Image[] AccessoryImages;
+
+
+    [HideInInspector] public bool IsItemEquip;
+    [HideInInspector] public string EquipSlotTag;
+
+    private ItemList _itemList;
 
 
     private void Start()
     {
+        _itemList = GameManager.Instance.ItemLists;
         IsItemEquip = false;
-        for(int i = 0; i < _itemList._weaponList.Count;i++ )
+        for(int i = 0; i < _itemList.WeaponList.Count;i++ )
         {
             GameObject temp = Instantiate(ItemSlot);
             temp.name = "Weapon ItemSlot";
             temp.transform.SetParent(WeaponContent.transform);
         }
-        for (int i = 0; i < _itemList._helmetList.Count; i++)
+        for (int i = 0; i < _itemList.HelmetList.Count; i++)
         {
             GameObject temp = Instantiate(ItemSlot);
             temp.name = "Helmet ItemSlot";
             temp.transform.SetParent(HelmetContent.transform);
         }
-        for (int i = 0; i < _itemList._armorList.Count; i++)
+        for (int i = 0; i < _itemList.ArmorList.Count; i++)
         {
             GameObject temp = Instantiate(ItemSlot);
             temp.name = "Armor ItemSlot";
             temp.transform.SetParent(ArmorContent.transform);
         }
-        for (int i = 0; i < _itemList._gloveList.Count; i++)
+        for (int i = 0; i < _itemList.GloveList.Count; i++)
         {
             GameObject temp = Instantiate(ItemSlot);
             temp.name = "Glove ItemSlot";
             temp.transform.SetParent(GloveContent.transform);
         }
-        for (int i = 0; i < _itemList._bootsList.Count; i++)
+        for (int i = 0; i < _itemList.BootsList.Count; i++)
         {
             GameObject temp = Instantiate(ItemSlot);
             temp.name = "Boots ItemSlot";
             temp.transform.SetParent(BootsContent.transform);
         }
-        for (int i = 0; i < _itemList._accessoryList.Count; i++)
+        for (int i = 0; i < _itemList.AccessoryList.Count; i++)
         {
             GameObject temp = Instantiate(ItemSlot);
             temp.name = "Accessory ItemSlot";
@@ -174,14 +183,44 @@ public class UIManager : MonoBehaviour
         paranet.GetChild(1).GetComponent<Image>().sprite = accessory.ItemImage;
         paranet.GetChild(2).GetComponent<Text>().text = accessory.ItemEffect;    
     }
+    public void EquipItem(Weapon weaponData)
+    {
+        _player.Equipments.EquipWeapon = weaponData;
+    }
+
+    public void EquipItem(Helmet helmetData)
+    {
+        _player.Equipments.EquipHelmet = helmetData;
+    }
+
+    public void EquipItem(Armor armorData)
+    {
+        _player.Equipments.EquipArmor = armorData;
+    }
+
+    public void EquipItem(Glove gloveData)
+    {
+        _player.Equipments.EquipGlove = gloveData;
+    }
+
+    public void EquipItem(Boots bootsData)
+    {
+        _player.Equipments.EquipBoots = bootsData;
+    }
+
+    public void EquipItem(Accessory accessoryData)
+    {
+
+    }
 
     public void StatusChange()
     {
 
     }
 
-    public void ItemEquip()
+    public void ItemEquip(string tag)
     {
+        EquipSlotTag = tag;
         IsItemEquip = true;
         OpenItemMenu();
     }

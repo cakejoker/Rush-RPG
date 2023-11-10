@@ -25,4 +25,5 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public bool IsBattleEnd;
+    public ItemList ItemLists;
 }

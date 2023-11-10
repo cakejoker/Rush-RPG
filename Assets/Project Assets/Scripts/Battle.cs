@@ -32,8 +32,8 @@ public class Battle : MonoBehaviour
         _targetMonster.gameObject.SetActive(true);
         _targetMonster.sprite = monsterData.MonsterImage;
         monsterData.CurrentHP = monsterData.MaxHP;
-        _playerData.CurrentHP = _playerData.MaxHP;
         _playerData = this.GetComponent<Player>();
+        _playerData.CurrentHP = _playerData.MaxHP;
         _playerData.IsBattle = true;
         Debug.Log("BattleStart!");
         StartCoroutine(BattlePhase(monsterData.SetDropItem(),monsterData));
@@ -51,37 +51,37 @@ public class Battle : MonoBehaviour
                 switch (itemData.ItemType)
                 {
                     case ItemData.ItemTypes.Weapon:
-                        _playerData._ownItemList._weaponList[itemData.ItemID].HasItem = true;
+                        _playerData._ownItemList.WeaponList[itemData.ItemID].HasItem = true;
                         itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
                         Weapon weapon = itemData as Weapon;
                         UI.GetItem(weapon);
                         break;
                     case ItemData.ItemTypes.Helmet:
-                        _playerData._ownItemList._helmetList[itemData.ItemID].HasItem = true;
+                        _playerData._ownItemList.HelmetList[itemData.ItemID].HasItem = true;
                         itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
                         Helmet helmet = itemData as Helmet;
                         UI.GetItem(helmet);
                         break;
                     case ItemData.ItemTypes.Armor:
-                        _playerData._ownItemList._armorList[itemData.ItemID].HasItem = true;
+                        _playerData._ownItemList.ArmorList[itemData.ItemID].HasItem = true;
                         itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
                         Armor armor = itemData as Armor;
                         UI.GetItem(armor);
                         break;
                     case ItemData.ItemTypes.Glove:
-                        _playerData._ownItemList._gloveList[itemData.ItemID].HasItem = true;
+                        _playerData._ownItemList.GloveList[itemData.ItemID].HasItem = true;
                         itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
                         Glove glove = itemData as Glove;
                         UI.GetItem(glove);
                         break;
                     case ItemData.ItemTypes.Boots:
-                        _playerData._ownItemList._bootsList[itemData.ItemID].HasItem = true;
+                        _playerData._ownItemList.BootsList[itemData.ItemID].HasItem = true;
                         itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
                         Boots boots = itemData as Boots;
                         UI.GetItem(boots);
                         break;
                     case ItemData.ItemTypes.Accessory:
-                        _playerData._ownItemList._accessoryList[itemData.ItemID].HasItem = true;
+                        _playerData._ownItemList.AccessoryList[itemData.ItemID].HasItem = true;
                         itemSlot = _weaponListPanel.transform.GetChild(itemData.ItemID).gameObject;
                         Accessory accessory = itemData as Accessory;
                         UI.GetItem(accessory);

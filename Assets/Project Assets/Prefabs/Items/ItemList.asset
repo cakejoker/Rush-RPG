@@ -12,37 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c08432b70ee6a4f86c17fedd7bba09, type: 3}
   m_Name: ItemList
   m_EditorClassIdentifier: 
-  _weaponList:
+  WeaponList:
   - {fileID: 11400000, guid: 07ad7f00445bf5a41b0f4ac9b033d01d, type: 2}
   - {fileID: 11400000, guid: 2673281f759b77a4196d60867c166997, type: 2}
   - {fileID: 11400000, guid: 71c7e71d705fe324f805c36d114652ef, type: 2}
   - {fileID: 11400000, guid: 25b1e62a2e9aa644d945ba55c8171e7d, type: 2}
   - {fileID: 11400000, guid: 93cac4815d7582745b9377f787c4c12d, type: 2}
-  _helmetList:
+  HelmetList:
   - {fileID: 11400000, guid: 5b252b5cdedf8144b82fe3d64504f2d8, type: 2}
   - {fileID: 11400000, guid: b99bd7078c69c73428ff490a2aaec305, type: 2}
   - {fileID: 11400000, guid: 1fe1d4b307dcae24a85a2562a52b61ee, type: 2}
   - {fileID: 11400000, guid: 3a1fa35eea1b81f40b753b4c22415d88, type: 2}
   - {fileID: 11400000, guid: ac371c1aaf0a32c48a6cb1f34fefa660, type: 2}
-  _armorList:
+  ArmorList:
   - {fileID: 11400000, guid: 19602bd079415764a83ee02e16b48d5a, type: 2}
   - {fileID: 11400000, guid: 477c1006c5fc30e459f9e5465d23423c, type: 2}
   - {fileID: 11400000, guid: 2d9d89c81ea07aa489650a2bd072474e, type: 2}
   - {fileID: 11400000, guid: 88bb74d755df2014d96a9f515d63c480, type: 2}
   - {fileID: 11400000, guid: f6073193dcca91a40857661ebe391cff, type: 2}
-  _gloveList:
+  GloveList:
   - {fileID: 11400000, guid: d05ee48e8c081fb4395752b8ac9838b2, type: 2}
   - {fileID: 11400000, guid: 85f06e0d16fba7a4a896aff454d71401, type: 2}
   - {fileID: 11400000, guid: 895c9832c4440474792ee3acb614672c, type: 2}
   - {fileID: 11400000, guid: 6471893ba2901cc4bbd5d72ad0a92189, type: 2}
   - {fileID: 11400000, guid: 2bdbf876d998c4d4fb32f8a04101d722, type: 2}
-  _bootsList:
+  BootsList:
   - {fileID: 11400000, guid: d4fe961fa5747c2468b9ad800c910dc1, type: 2}
   - {fileID: 11400000, guid: 6185145d1823e624ea18e33fe354fcab, type: 2}
   - {fileID: 11400000, guid: 2e7bbe96859d50349978e99bb5004c99, type: 2}
   - {fileID: 11400000, guid: 83be5bd6c7418b94a978c36df1acc4e3, type: 2}
   - {fileID: 11400000, guid: 53895623849a7384583aeb125d49d19a, type: 2}
-  _accessoryList:
+  AccessoryList:
   - {fileID: 11400000, guid: c69615f03d673094b91ba7f10ca9b332, type: 2}
   - {fileID: 11400000, guid: 40de11c961085ca47b38d5adcb2cb63f, type: 2}
   - {fileID: 11400000, guid: 72fd19ff167b8364e92c5ebbc829de80, type: 2}
